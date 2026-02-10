@@ -104,3 +104,35 @@
     );
   }
 }
+
+/* Flower reveal animation — stem → leaves → petals */
+@keyframes stem-grow {
+  0% { opacity: 0; clip-path: inset(100% 0 0 0); }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+@keyframes leaves-appear {
+  0% { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes petals-bloom {
+  0% { opacity: 0; transform: scale(0); }
+  60% { opacity: 1; transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.flower-reveal .flower-stem {
+  opacity: 0;
+  animation: stem-grow 1s ease-out 0s forwards;
+}
+
+.flower-reveal .flower-leaves {
+  opacity: 0;
+  animation: leaves-appear 0.8s ease-out 0.8s forwards;
+}
+
+.flower-reveal .flower-petals {
+  opacity: 0;
+  animation: petals-bloom 1.4s ease-out 1.4s forwards;
+}
