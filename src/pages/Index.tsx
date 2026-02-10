@@ -15,6 +15,7 @@ const Index = () => {
   const [surprise, setSurprise] = useState<SurpriseData | null>(null);
   const [notFound, setNotFound] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const [letterOpen, setLetterOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -34,6 +35,7 @@ const Index = () => {
 
   const togglePlay = useCallback(() => {
     setIsPlaying((prev) => !prev);
+    setHasStarted(true);
   }, []);
 
   // Simulate progress bar
@@ -107,7 +109,7 @@ const Index = () => {
       <div className="relative z-10 min-h-screen flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 p-6 lg:p-12">
         {/* Flower section */}
         <div className="flex flex-col items-center animate-fade-in-up">
-          <FlowerSVG type={surprise!.flower} isPlaying={isPlaying} />
+          <FlowerSVG type={surprise!.flower} isPlaying={isPlaying} hasStarted={hasStarted} />
           <p className="mt-2 text-sm text-muted-foreground font-sans capitalize">
             {surprise!.flower.replace("-", " ")} for {displayName}
           </p>

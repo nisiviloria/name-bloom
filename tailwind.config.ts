@@ -81,8 +81,7 @@ export default {
           "100%": { transform: "translateY(110vh) rotate(360deg)", opacity: "0" },
         },
         "bloom": {
-          "0%": { transform: "scale(0.3) rotate(-10deg)", opacity: "0.5" },
-          "50%": { transform: "scale(0.7) rotate(0deg)", opacity: "0.8" },
+          "0%": { transform: "scale(1) rotate(0deg)", opacity: "1" },
           "100%": { transform: "scale(1) rotate(0deg)", opacity: "1" },
         },
         "glow-pulse": {
