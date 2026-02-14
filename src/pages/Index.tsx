@@ -34,8 +34,8 @@ const Index = () => {
 
   const togglePlay = useCallback(() => {
     setIsPlaying((prev) => !prev);
-    setHasStarted(true);
-  }, []);
+    if (!hasStarted) setHasStarted(true);
+  }, [hasStarted]);
 
   const handleProgressUpdate = useCallback((p: number) => {
     setProgress(p);
