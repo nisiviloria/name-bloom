@@ -34,16 +34,11 @@ const Index = () => {
 
   const togglePlay = useCallback(() => {
     setIsPlaying((prev) => !prev);
-    if (!hasStarted) setHasStarted(true);
-  }, [hasStarted]);
+    setHasStarted(true);
+  }, []);
 
-<<<<<<< HEAD
   const handleProgressUpdate = useCallback((newProgress: number) => {
     setProgress(newProgress);
-=======
-  const handleProgressUpdate = useCallback((p: number) => {
-    setProgress(p);
->>>>>>> e4c01d64db83852635262c08e71a4be95070e213
   }, []);
 
   // Welcome / Name Entry screen
@@ -58,7 +53,8 @@ const Index = () => {
               <h1 className="font-serif text-2xl sm:text-3xl font-bold text-card-foreground mb-2">
                 Someone has a surprise for you
               </h1>
-        <p className="text-muted-foreground mb-2 font-sans">💌 Enter your name to find out</p>
+              <p className="text-muted-foreground mb-2 font-sans">💌 Enter your name to find out</p>
+              <p className="text-sm text-muted-foreground/80 mb-2 font-sans">Capital first letter and please use your real first name</p>
               <div className="space-y-3">
                 <Input
                   value={name}
@@ -77,7 +73,7 @@ const Index = () => {
 
               {notFound && (
                 <p className="mt-4 text-muted-foreground animate-fade-in-up font-sans">
-                  Baka naman nagkamali ka pa sa name mo or baka wala ka talagang suprise 💌
+                  This surprise isn't ready yet 💌
                 </p>
               )}
             </CardContent>

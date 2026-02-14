@@ -15,7 +15,6 @@ const LetterModal = ({ letter, name, songUrl, isOpen, onOpen, onClose }: LetterM
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-<<<<<<< HEAD
   // Initialize audio
   useEffect(() => {
     if (!songUrl) return;
@@ -41,25 +40,6 @@ const LetterModal = ({ letter, name, songUrl, isOpen, onOpen, onClose }: LetterM
       audioRef.current.play().catch((err) => {
         console.error("Modal audio failed:", err);
       });
-=======
-  const getAudio = () => {
-    if (!audioRef.current) {
-      const audio = new Audio(songUrl);
-      audio.preload = "auto";
-      audio.onended = () => setIsPlaying(false);
-      audioRef.current = audio;
-    }
-    return audioRef.current;
-  };
-
-  const togglePlay = () => {
-    const audio = getAudio();
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-    } else {
-      audio.play().catch((err) => console.error("Modal audio failed:", err));
->>>>>>> e4c01d64db83852635262c08e71a4be95070e213
       setIsPlaying(true);
     }
   };
@@ -141,20 +121,28 @@ const LetterModal = ({ letter, name, songUrl, isOpen, onOpen, onClose }: LetterM
           {letter}
         </div>
 
-<<<<<<< HEAD
-=======
-        {/* Audio playback control in modal */}
-        <div className="flex justify-center mt-6">
+        {/* Audio playback and close button controls */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
+          {songUrl && (
+            <Button
+              onClick={togglePlay}
+              variant="outline"
+              className="gap-2 border-primary/30 text-primary hover:bg-primary/10 text-sm sm:text-base px-6 py-5 sm:px-8 sm:py-6 w-full sm:w-auto"
+            >
+              {isPlaying ? <Pause className="w-4 h-4 sm:w-5 sm:h-5" /> : <Play className="w-4 h-4 sm:w-5 sm:h-5" />}
+              {isPlaying ? "Pause Music" : "Play Music"}
+            </Button>
+          )}
+          
           <Button
-            onClick={togglePlay}
+            onClick={onClose}
             variant="outline"
-            className="gap-2 border-primary/30 text-primary hover:bg-primary/10"
+            className="gap-2 text-sm sm:text-base px-6 py-5 sm:px-8 sm:py-6 w-full sm:w-auto"
           >
-            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-            {isPlaying ? "Pause Music" : "Play Music"}
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
+            Close Letter
           </Button>
         </div>
->>>>>>> e4c01d64db83852635262c08e71a4be95070e213
       </div>
     </div>
   );
