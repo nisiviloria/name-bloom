@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useCallback } from "react";
 import { Play, Pause, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,42 +14,39 @@ interface MusicPlayerProps {
 }
 
 const MusicPlayer = ({ songTitle, songArtist, songUrl, isPlaying, onTogglePlay, progress, onProgressUpdate }: MusicPlayerProps) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
+  const getAudio = useCallback(() => {
+    if (!audioRef.current) {
+      const audio = new Audio(songUrl);
+      audio.preload = "auto";
+      audio.ontimeupdate = () => {
+        if (audio.duration) {
+          onProgressUpdate((audio.currentTime / audio.duration) * 100);
+        }
+      };
+      audio.onended = () => {
+        onProgressUpdate(0);
+        onTogglePlay();
+      };
+      audioRef.current = audio;
+    }
+    return audioRef.current;
+  }, [songUrl, onProgressUpdate, onTogglePlay]);
 
+  const handleClick = () => {
+    const audio = getAudio();
     if (isPlaying) {
-      audio.play().catch((err) => console.error("Audio playback failed:", err));
-    } else {
       audio.pause();
+    } else {
+      audio.play().catch((err) => console.error("Audio playback failed:", err));
     }
-  }, [isPlaying]);
-
-  const handleTimeUpdate = () => {
-    const audio = audioRef.current;
-    if (audio && audio.duration) {
-      onProgressUpdate((audio.currentTime / audio.duration) * 100);
-    }
-  };
-
-  const handleEnded = () => {
-    onProgressUpdate(0);
     onTogglePlay();
   };
 
   return (
     <Card className="w-full max-w-sm mx-auto shadow-lg border-0 bg-card/90 backdrop-blur-sm">
       <CardContent className="p-6">
-        <audio
-          ref={audioRef}
-          src={songUrl}
-          preload="auto"
-          onTimeUpdate={handleTimeUpdate}
-          onEnded={handleEnded}
-        />
-
         <div className="flex items-center gap-4 mb-5">
           <div className="w-14 h-14 rounded-lg bg-accent flex items-center justify-center shrink-0">
             <Music className="w-7 h-7 text-primary" />
@@ -71,7 +68,7 @@ const MusicPlayer = ({ songTitle, songArtist, songUrl, isPlaying, onTogglePlay, 
         {/* Controls */}
         <div className="flex justify-center">
           <Button
-            onClick={onTogglePlay}
+            onClick={handleClick}
             size="icon"
             className="w-14 h-14 rounded-full shadow-md"
           >

@@ -12,18 +12,28 @@ interface LetterModalProps {
 }
 
 const LetterModal = ({ letter, name, songUrl, isOpen, onOpen, onClose }: LetterModalProps) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const getAudio = () => {
+    if (!audioRef.current) {
+      const audio = new Audio(songUrl);
+      audio.preload = "auto";
+      audio.onended = () => setIsPlaying(false);
+      audioRef.current = audio;
+    }
+    return audioRef.current;
+  };
+
   const togglePlay = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
+    const audio = getAudio();
     if (isPlaying) {
       audio.pause();
+      setIsPlaying(false);
     } else {
       audio.play().catch((err) => console.error("Modal audio failed:", err));
+      setIsPlaying(true);
     }
-    setIsPlaying(!isPlaying);
   };
 
   // Stop audio when modal closes
@@ -51,8 +61,6 @@ const LetterModal = ({ letter, name, songUrl, isOpen, onOpen, onClose }: LetterM
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foreground/30 backdrop-blur-sm">
       <div className="relative w-full max-w-md animate-fade-in-up bg-card rounded-2xl shadow-2xl p-8 border border-border">
-        <audio ref={audioRef} src={songUrl} preload="auto" onEnded={() => setIsPlaying(false)} />
-
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
@@ -69,7 +77,7 @@ const LetterModal = ({ letter, name, songUrl, isOpen, onOpen, onClose }: LetterM
           {letter}
         </div>
 
-        {/* Audio control in modal */}
+        {/* Audio playback control in modal */}
         <div className="flex justify-center mt-6">
           <Button
             onClick={togglePlay}
