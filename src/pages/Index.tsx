@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback } from "react";
 import { findSurprise, type SurpriseData } from "@/data/surprises";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -34,11 +34,16 @@ const Index = () => {
 
   const togglePlay = useCallback(() => {
     setIsPlaying((prev) => !prev);
-    setHasStarted(true);
-  }, []);
+    if (!hasStarted) setHasStarted(true);
+  }, [hasStarted]);
 
+<<<<<<< HEAD
   const handleProgressUpdate = useCallback((newProgress: number) => {
     setProgress(newProgress);
+=======
+  const handleProgressUpdate = useCallback((p: number) => {
+    setProgress(p);
+>>>>>>> e4c01d64db83852635262c08e71a4be95070e213
   }, []);
 
   // Welcome / Name Entry screen

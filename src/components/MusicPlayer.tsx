@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { useRef, useCallback, useEffect } from "react";
 import { Play, Pause, Music, RotateCcw } from "lucide-react";
+=======
+import { useRef, useCallback } from "react";
+import { Play, Pause, Music } from "lucide-react";
+>>>>>>> e4c01d64db83852635262c08e71a4be95070e213
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -13,6 +18,7 @@ interface MusicPlayerProps {
   onProgressUpdate: (progress: number) => void;
 }
 
+<<<<<<< HEAD
 const MusicPlayer = ({ 
   songTitle, 
   songArtist, 
@@ -82,6 +88,38 @@ const MusicPlayer = ({
       onTogglePlay();
     }
   }, [isPlaying, onTogglePlay, onProgressUpdate]);
+=======
+const MusicPlayer = ({ songTitle, songArtist, songUrl, isPlaying, onTogglePlay, progress, onProgressUpdate }: MusicPlayerProps) => {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const getAudio = useCallback(() => {
+    if (!audioRef.current) {
+      const audio = new Audio(songUrl);
+      audio.preload = "auto";
+      audio.ontimeupdate = () => {
+        if (audio.duration) {
+          onProgressUpdate((audio.currentTime / audio.duration) * 100);
+        }
+      };
+      audio.onended = () => {
+        onProgressUpdate(0);
+        onTogglePlay();
+      };
+      audioRef.current = audio;
+    }
+    return audioRef.current;
+  }, [songUrl, onProgressUpdate, onTogglePlay]);
+
+  const handleClick = () => {
+    const audio = getAudio();
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play().catch((err) => console.error("Audio playback failed:", err));
+    }
+    onTogglePlay();
+  };
+>>>>>>> e4c01d64db83852635262c08e71a4be95070e213
 
   return (
     <Card className="w-full max-w-sm mx-auto shadow-lg border-0 bg-card/90 backdrop-blur-sm">
@@ -107,6 +145,7 @@ const MusicPlayer = ({
         {/* Controls */}
         <div className="flex justify-center items-center gap-3">
           <Button
+<<<<<<< HEAD
             onClick={handleReset}
             size="icon"
             variant="outline"
@@ -118,6 +157,9 @@ const MusicPlayer = ({
           
           <Button
             onClick={handlePlayPause}
+=======
+            onClick={handleClick}
+>>>>>>> e4c01d64db83852635262c08e71a4be95070e213
             size="icon"
             className="w-14 h-14 rounded-full shadow-md"
             disabled={!songUrl}
