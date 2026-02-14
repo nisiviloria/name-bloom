@@ -128,15 +128,15 @@ Happy Valentine’s Day, my love Bff Kaye! 💗 This song really reminds me of y
 
 May this flower remind you of how strong, kind, and special you are to me. Just like this song gave me hope, you also became part of the reason why I kept going. I’m always grateful for you. I love you so much. I miss you, bond us soon. 💐💕`},shane:{flower:"peony",songTitle:"Sa Bawat Sandali",songArtist:"Amie Sol",songUrl:"/happy-valentines-day/songs/Sa Bawat Sandali.mp3",letter:`Dear Baks,
 
-Happy Valentine’s Day, bff ko 💗 you deserve this. I know it’s not a real flower, but I still hope you felt surprised when you saw this.(Shet, cinode ko pa ’yan ha, parang medyo over sa effort sa code, pero for you, worth it). 
+Happy Valentine’s Day, bff ko 💗 you deserve this. I know it’s not a real flower, but I still hope you felt surprised when you saw this.(shet, cinode ko pa ’yan ha, medyo over naman sa flex, for you, worth it). 
 
 I dedicate this song to you because you always stand the test of time. No matter what happens, you stay strong and you keep going. Every part of me is always here when you need me. My shoulders are always yours to lean on. I’ll never get tired of assuring you that you can always lean on me when your heart feels so heavy. Sasalubungin kita lagi with open arms.
 
- I know life has been so tough lately, but I’m so proud of you. You did it. You didn’t even ask for help, you just faced everything and survived it. Yes, I’m sad for the both of you kasi syempre parehas ko kayong kaibigan, but iba yung sa’yo. Iba ka kay Arwin kasi ikaw yung nakasama ko ng ilang taon. You’re my soul sister, kahit parehas tayong panganay girly na laging strong sa labas pero soft sa loob.
+ I know life has been so tough lately, but I’m so proud of you. You did it. You didn’t even ask for help, you just faced everything and survived it. yes, I’m sad for the both of you kasi syempre parehas ko kayong kaibigan, but iba yung sa’yo. Iba ka kay Arwin kasi ikaw yung nakasama ko ng ilang taon. You’re my soul sister, kahit parehas tayong panganay girly na laging strong sa labas pero soft sa loob.
 
  I know your decision wasn’t easy. Ang tagal mo yang pinag isipan before you finally chose yourself. That kind of courage is not easy. I’m so proud of you for choosing what’s healthy for you. You didn’t deserve that kind of love. You deserve something gentle, consistent, and sure, something that will never make you question your worth. 
 
-Please reach out if you need someone. Kahit anong oras pa yan. I’ll listen. I’ll sit with you. I’ll cry with you if needed. Hindi ka mag isa. Even on the days you feel weak, I’ll remind you how strong you really are. I love you, bff ko. Always. 💐 🌻`},maria:{flower:"tulip",songTitle:"A Thousand Years",songArtist:"Christina Perri",songUrl:"",letter:`Dear Maria,
+Please reach out if you need someone. Kahit anong oras pa yan. I’ll listen. I’ll sit with you. I’ll cry with you if needed. Hindi ka mag isa. Even on the days you feel weak, I’ll remind you how strong you really are. I love you, bff ko. Always. 💐 `},maria:{flower:"tulip",songTitle:"A Thousand Years",songArtist:"Christina Perri",songUrl:"",letter:`Dear Maria,
 
 Tulips symbolize perfect love, and that's exactly what you give to everyone around you. Your grace and elegance inspire those lucky enough to know you.
 
