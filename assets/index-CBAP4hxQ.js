@@ -126,7 +126,7 @@ Happy Valentine’s Day, my love Bff Kaye! 💗 This song really reminds me of y
 
  I actually discovered Belle Mariano’s song because of you during our OJT. You kept suggesting it and playing it, and you probably didn’t even realize how much that simple thing helped me. In your own little way, you were helping me heal without even knowing it. Thank you for that. 
 
-May this flower remind you of how strong, kind, and special you are to me. Just like this song gave me hope, you also became part of the reason why I kept going. I’m always grateful for you. I love you so much. I miss you, bond us soon. 💐💕`},shane:{flower:"peony",songTitle:"Sa Bawat Sandali",songArtist:"Amie Sol",songUrl:"/happy-valentines-day/songs/Sa Bawat Sandali.mp3",letter:`Dear Baks,
+May this flower remind you of how strong, kind, and special you are to me. Just like this song gave me hope, you also became part of the reason why I kept going. I’m always grateful for you. I love you so much. I miss you, bond us soon. 💐💕`},shane:{flower:"peony",songTitle:"Sa Bawat Sandali",songArtist:"Amiel Sol",songUrl:"/happy-valentines-day/songs/Sa Bawat Sandali.mp3",letter:`Dear Baks,
 
 Happy Valentine’s Day, bff ko 💗 you deserve this. I know it’s not a real flower, but I still hope you felt surprised when you saw this.(shet, cinode ko pa ’yan ha, medyo over naman sa flex, for you, worth it). 
 
