@@ -4,6 +4,7 @@ export interface SurpriseData {
   flower: FlowerType;
   songTitle: string;
   songArtist: string;
+  songUrl: string;
   letter: string;
 }
 
@@ -12,6 +13,7 @@ export const surprises: Record<string, SurpriseData> = {
     flower: "rose",
     songTitle: "Can't Help Falling in Love",
     songArtist: "Elvis Presley",
+    songUrl: "/songs/anna.mp3",
     letter:
       "Dear Anna,\n\nEvery rose in the world couldn't capture the beauty you bring to the lives of those around you. You have a warmth that makes everyone feel at home, and a smile that lights up the darkest rooms.\n\nNever stop being the incredible person you are.\n\nWith all my love 💕",
   },
@@ -19,6 +21,7 @@ export const surprises: Record<string, SurpriseData> = {
     flower: "sunflower",
     songTitle: "Here Comes the Sun",
     songArtist: "The Beatles",
+    songUrl: "/songs/john.mp3",
     letter:
       "Dear John,\n\nLike a sunflower always turning toward the light, you bring sunshine into everyone's life. Your positivity and kindness are truly contagious.\n\nKeep shining bright — the world needs your light.\n\nWith warmth and admiration 🌻",
   },
@@ -26,6 +29,7 @@ export const surprises: Record<string, SurpriseData> = {
     flower: "tulip",
     songTitle: "A Thousand Years",
     songArtist: "Christina Perri",
+    songUrl: "/songs/maria.mp3",
     letter:
       "Dear Maria,\n\nTulips symbolize perfect love, and that's exactly what you give to everyone around you. Your grace and elegance inspire those lucky enough to know you.\n\nYou are cherished more than you know.\n\nForever grateful 🌷",
   },
@@ -33,6 +37,7 @@ export const surprises: Record<string, SurpriseData> = {
     flower: "lily",
     songTitle: "Thinking Out Loud",
     songArtist: "Ed Sheeran",
+    songUrl: "/songs/david.mp3",
     letter:
       "Dear David,\n\nLilies represent devotion, and that's what defines you — your loyalty to the people you love. You stand tall and strong, yet gentle and kind.\n\nThe world is better because you're in it.\n\nWith deep respect 🤍",
   },
@@ -40,6 +45,7 @@ export const surprises: Record<string, SurpriseData> = {
     flower: "daisy",
     songTitle: "You Are My Sunshine",
     songArtist: "Johnny Cash",
+    songUrl: "/songs/sophie.mp3",
     letter:
       "Dear Sophie,\n\nDaisies are the flower of innocence and joy — just like you. Your laughter is music, and your spirit is free.\n\nNever let anyone dim your sparkle.\n\nWith love and joy 🌼",
   },
@@ -47,6 +53,7 @@ export const surprises: Record<string, SurpriseData> = {
     flower: "cherry-blossom",
     songTitle: "Perfect",
     songArtist: "Ed Sheeran",
+    songUrl: "/songs/emma.mp3",
     letter:
       "Dear Emma,\n\nCherry blossoms remind us that life is beautiful and fleeting — and you make every moment count. You live with grace, passion, and an open heart.\n\nYou are truly unforgettable.\n\nWith admiration 🌸",
   },
@@ -54,6 +61,7 @@ export const surprises: Record<string, SurpriseData> = {
     flower: "lavender",
     songTitle: "All of Me",
     songArtist: "John Legend",
+    songUrl: "/songs/lucas.mp3",
     letter:
       "Dear Lucas,\n\nLavender stands for calm and serenity — the exact feeling people get when they're around you. Your peaceful energy is a gift.\n\nKeep being the calm in the storm.\n\nWith peace and love 💜",
   },
@@ -61,6 +69,7 @@ export const surprises: Record<string, SurpriseData> = {
     flower: "orchid",
     songTitle: "Unchained Melody",
     songArtist: "The Righteous Brothers",
+    songUrl: "/songs/olivia.mp3",
     letter:
       "Dear Olivia,\n\nOrchids are rare and extraordinary, just like you. You carry yourself with a quiet strength and beauty that leaves everyone in awe.\n\nNever underestimate how special you truly are.\n\nWith endless love 💐",
   },
