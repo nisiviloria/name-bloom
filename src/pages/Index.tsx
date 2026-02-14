@@ -54,7 +54,6 @@ const Index = () => {
                 Someone has a surprise for you
               </h1>
               <p className="text-muted-foreground mb-2 font-sans">💌 Enter your name to find out</p>
-              <p className="text-sm text-muted-foreground/80 mb-2 font-sans">Capital first letter and please use your real first name</p>
               <div className="space-y-3">
                 <Input
                   value={name}
@@ -73,7 +72,7 @@ const Index = () => {
 
               {notFound && (
                 <p className="mt-4 text-muted-foreground animate-fade-in-up font-sans">
-                  This surprise isn't ready yet 💌
+                  Baka hindi mo pa alam name mo ah, over ka naman 💌
                 </p>
               )}
             </CardContent>
