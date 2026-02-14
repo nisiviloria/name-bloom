@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback } from "react";
 import { findSurprise, type SurpriseData } from "@/data/surprises";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,6 @@ const Index = () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [letterOpen, setLetterOpen] = useState(false);
   const [progress, setProgress] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const handleSubmit = useCallback(() => {
     if (!name.trim()) return;
@@ -38,25 +37,9 @@ const Index = () => {
     setHasStarted(true);
   }, []);
 
-  // Simulate progress bar
-  useEffect(() => {
-    if (isPlaying) {
-      intervalRef.current = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 100) {
-            setIsPlaying(false);
-            return 0;
-          }
-          return prev + 0.5;
-        });
-      }, 150);
-    } else if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [isPlaying]);
+  const handleProgressUpdate = useCallback((p: number) => {
+    setProgress(p);
+  }, []);
 
   // Welcome / Name Entry screen
   if (!submitted) {
@@ -123,14 +106,17 @@ const Index = () => {
           <MusicPlayer
             songTitle={surprise!.songTitle}
             songArtist={surprise!.songArtist}
+            songUrl={surprise!.songUrl}
             isPlaying={isPlaying}
             onTogglePlay={togglePlay}
             progress={progress}
+            onProgressUpdate={handleProgressUpdate}
           />
 
           <LetterModal
             letter={surprise!.letter}
             name={displayName}
+            songUrl={surprise!.songUrl}
             isOpen={letterOpen}
             onOpen={() => setLetterOpen(true)}
             onClose={() => setLetterOpen(false)}

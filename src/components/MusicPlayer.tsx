@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { Play, Pause, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -5,15 +6,50 @@ import { Card, CardContent } from "@/components/ui/card";
 interface MusicPlayerProps {
   songTitle: string;
   songArtist: string;
+  songUrl: string;
   isPlaying: boolean;
   onTogglePlay: () => void;
   progress: number;
+  onProgressUpdate: (progress: number) => void;
 }
 
-const MusicPlayer = ({ songTitle, songArtist, isPlaying, onTogglePlay, progress }: MusicPlayerProps) => {
+const MusicPlayer = ({ songTitle, songArtist, songUrl, isPlaying, onTogglePlay, progress, onProgressUpdate }: MusicPlayerProps) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.play().catch((err) => console.error("Audio playback failed:", err));
+    } else {
+      audio.pause();
+    }
+  }, [isPlaying]);
+
+  const handleTimeUpdate = () => {
+    const audio = audioRef.current;
+    if (audio && audio.duration) {
+      onProgressUpdate((audio.currentTime / audio.duration) * 100);
+    }
+  };
+
+  const handleEnded = () => {
+    onProgressUpdate(0);
+    onTogglePlay();
+  };
+
   return (
     <Card className="w-full max-w-sm mx-auto shadow-lg border-0 bg-card/90 backdrop-blur-sm">
       <CardContent className="p-6">
+        <audio
+          ref={audioRef}
+          src={songUrl}
+          preload="auto"
+          onTimeUpdate={handleTimeUpdate}
+          onEnded={handleEnded}
+        />
+
         <div className="flex items-center gap-4 mb-5">
           <div className="w-14 h-14 rounded-lg bg-accent flex items-center justify-center shrink-0">
             <Music className="w-7 h-7 text-primary" />
