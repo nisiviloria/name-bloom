@@ -18,7 +18,6 @@ const Index = () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [letterOpen, setLetterOpen] = useState(false);
   const [progress, setProgress] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const handleSubmit = useCallback(() => {
     if (!name.trim()) return;
@@ -38,25 +37,9 @@ const Index = () => {
     setHasStarted(true);
   }, []);
 
-  // Simulate progress bar
-  useEffect(() => {
-    if (isPlaying) {
-      intervalRef.current = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 100) {
-            setIsPlaying(false);
-            return 0;
-          }
-          return prev + 0.5;
-        });
-      }, 150);
-    } else if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [isPlaying]);
+  const handleProgressUpdate = useCallback((newProgress: number) => {
+    setProgress(newProgress);
+  }, []);
 
   // Welcome / Name Entry screen
   if (!submitted) {
@@ -70,8 +53,7 @@ const Index = () => {
               <h1 className="font-serif text-2xl sm:text-3xl font-bold text-card-foreground mb-2">
                 Someone has a surprise for you
               </h1>
-              <p className="text-muted-foreground mb-6 font-sans">💌 Enter your name to find out</p>
-
+        <p className="text-muted-foreground mb-2 font-sans">💌 Enter your name to find out</p>
               <div className="space-y-3">
                 <Input
                   value={name}
@@ -90,7 +72,7 @@ const Index = () => {
 
               {notFound && (
                 <p className="mt-4 text-muted-foreground animate-fade-in-up font-sans">
-                  This surprise isn't ready yet 💌
+                  Baka naman nagkamali ka pa sa name mo or baka wala ka talagang suprise 💌
                 </p>
               )}
             </CardContent>
@@ -110,8 +92,8 @@ const Index = () => {
         {/* Flower section */}
         <div className="flex flex-col items-center animate-fade-in-up">
           <FlowerSVG type={surprise!.flower} isPlaying={isPlaying} hasStarted={hasStarted} />
-          <p className="mt-2 text-sm text-muted-foreground font-sans capitalize">
-            {surprise!.flower.replace("-", " ")} for {displayName}
+          <p className="mt-2 text-sm text-muted-foreground font-sans">
+            Play the music for the surprise
           </p>
         </div>
 
@@ -123,14 +105,17 @@ const Index = () => {
           <MusicPlayer
             songTitle={surprise!.songTitle}
             songArtist={surprise!.songArtist}
+            songUrl={surprise!.songUrl}
             isPlaying={isPlaying}
             onTogglePlay={togglePlay}
             progress={progress}
+            onProgressUpdate={handleProgressUpdate}
           />
 
           <LetterModal
             letter={surprise!.letter}
             name={displayName}
+            songUrl={surprise!.songUrl}
             isOpen={letterOpen}
             onOpen={() => setLetterOpen(true)}
             onClose={() => setLetterOpen(false)}

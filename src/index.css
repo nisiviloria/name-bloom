@@ -136,3 +136,9 @@
   opacity: 0;
   animation: petals-bloom 1.4s ease-out 1.4s forwards;
 }
+/* Hide Lovable branding */
+[data-lovable-branding],
+[class*="lovable"],
+iframe[src*="lovable"] {
+  display: none !important;
+}

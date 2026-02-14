@@ -10,12 +10,25 @@ const FlowerSVG = ({ type, isPlaying, hasStarted }: FlowerSVGProps) => {
   // If play has never been clicked, flower is fully invisible
   if (!hasStarted) {
     return (
-      <div className="w-48 h-64 sm:w-56 sm:h-72 md:w-64 md:h-80 lg:w-72 lg:h-96 mx-auto opacity-0" />
+      <div className="w-full h-64 sm:h-72 md:h-80 lg:h-96 mx-auto opacity-0" />
     );
   }
 
   const glowClass = isPlaying ? "animate-glow-pulse" : "";
   const pausedStyle = !isPlaying ? { animationPlayState: "paused" as const } : {};
+
+  // Shadow colors for each flower type
+  const shadowColors: Record<FlowerType, string> = {
+    rose: "rgba(220, 53, 69, 0.4)",
+    sunflower: "rgba(255, 193, 7, 0.4)",
+    tulip: "rgba(220, 53, 100, 0.4)",
+    lily: "rgba(245, 245, 245, 0.4)",
+    daisy: "rgba(255, 255, 255, 0.4)",
+    "cherry-blossom": "rgba(255, 182, 193, 0.4)",
+    lavender: "rgba(147, 112, 219, 0.4)",
+    orchid: "rgba(218, 112, 214, 0.4)",
+    peony: "rgba(255, 192, 203, 0.4)",
+  };
 
   const flowers: Record<FlowerType, JSX.Element> = {
     rose: (
@@ -163,11 +176,67 @@ const FlowerSVG = ({ type, isPlaying, hasStarted }: FlowerSVGProps) => {
         </g>
       </svg>
     ),
+    peony: (
+      <svg viewBox="0 0 200 300" className={`w-full h-full ${glowClass}`} style={pausedStyle}>
+        <g className="flower-stem" style={pausedStyle}>
+          <line x1="100" y1="155" x2="100" y2="280" stroke="hsl(140, 40%, 40%)" strokeWidth="4" />
+        </g>
+        <g className="flower-leaves" style={pausedStyle}>
+          <ellipse cx="85" cy="220" rx="20" ry="10" fill="hsl(140, 45%, 45%)" transform="rotate(-35, 85, 220)" />
+          <ellipse cx="115" cy="250" rx="20" ry="10" fill="hsl(140, 45%, 45%)" transform="rotate(35, 115, 250)" />
+        </g>
+        <g className="flower-petals" style={{ ...pausedStyle, transformOrigin: "100px 115px" }}>
+          {/* Outer layer - larger petals */}
+          {[...Array(8)].map((_, i) => (
+            <ellipse key={`outer-${i}`} cx="100" cy="75" rx="20" ry="32" fill="hsl(350, 60%, 75%)" transform={`rotate(${i * 45}, 100, 115)`} />
+          ))}
+          {/* Middle layer - medium petals */}
+          {[...Array(8)].map((_, i) => (
+            <ellipse key={`middle-${i}`} cx="100" cy="85" rx="16" ry="26" fill="hsl(350, 65%, 70%)" transform={`rotate(${i * 45 + 22.5}, 100, 115)`} />
+          ))}
+          {/* Inner layer - smaller petals */}
+          {[...Array(6)].map((_, i) => (
+            <ellipse key={`inner-${i}`} cx="100" cy="95" rx="12" ry="20" fill="hsl(350, 70%, 65%)" transform={`rotate(${i * 60}, 100, 115)`} />
+          ))}
+          {/* Center */}
+          <circle cx="100" cy="115" r="12" fill="hsl(350, 75%, 60%)" />
+          <circle cx="100" cy="115" r="8" fill="hsl(45, 75%, 65%)" />
+        </g>
+      </svg>
+    ),
   };
 
   return (
-    <div className="w-48 h-64 sm:w-56 sm:h-72 md:w-64 md:h-80 lg:w-72 lg:h-96 mx-auto flower-reveal">
-      {flowers[type]}
+    <div className="flex justify-center items-end mx-auto">
+      {/* Left flower - slightly smaller and lower */}
+      <div 
+        className="w-40 h-56 sm:w-44 sm:h-60 md:w-48 md:h-64 lg:w-52 lg:h-72 flower-reveal opacity-70 -mr-8 sm:-mr-10 md:-mr-12 lg:-mr-14 z-10"
+        style={{
+          filter: `drop-shadow(0 10px 20px ${shadowColors[type]}) drop-shadow(0 5px 10px ${shadowColors[type]})`
+        }}
+      >
+        {flowers[type]}
+      </div>
+      
+      {/* Center flower - largest */}
+      <div 
+        className="w-48 h-64 sm:w-56 sm:h-72 md:w-64 md:h-80 lg:w-72 lg:h-96 flower-reveal z-20"
+        style={{
+          filter: `drop-shadow(0 15px 30px ${shadowColors[type]}) drop-shadow(0 8px 15px ${shadowColors[type]})`
+        }}
+      >
+        {flowers[type]}
+      </div>
+      
+      {/* Right flower - slightly smaller and lower */}
+      <div 
+        className="w-40 h-56 sm:w-44 sm:h-60 md:w-48 md:h-64 lg:w-52 lg:h-72 flower-reveal opacity-70 -ml-8 sm:-ml-10 md:-ml-12 lg:-ml-14 z-10"
+        style={{
+          filter: `drop-shadow(0 10px 20px ${shadowColors[type]}) drop-shadow(0 5px 10px ${shadowColors[type]})`
+        }}
+      >
+        {flowers[type]}
+      </div>
     </div>
   );
 };
